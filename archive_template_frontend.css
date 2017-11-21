@@ -1,0 +1,41 @@
+.archive_advert {
+    width:100%;
+    margin:1em 0 2em 0;
+    display:block;
+}
+.archive_advert:hover {
+    background:#5b816d;
+    -webkit-transition:background 1000ms ease;
+    -moz-transition:background 1000ms ease;
+    -ms-transition:background 1000ms ease;
+    -o-transition:background 1000ms ease;
+    transition:background 1000ms ease;
+}
+.archive_advert img {
+    width:100%;
+    height:auto;
+    margin:0;
+    padding:0;
+}
+.archive_advert .title_block {
+    width:100%;
+    float:left;
+    margin:-5px 0 0 0;
+    background:#f2f2f2;
+    padding:0.8em 0;
+}
+.archive_advert .title_block h3 {
+    color:#5b816d;
+    font-size:1.5em;
+    line-height:1.2em;
+    text-align:center;
+    margin:0;
+}
+.archive_advert:hover .title_block h3 {
+    color:white;
+    -webkit-transition:color 1000ms ease;
+    -moz-transition:color 1000ms ease;
+    -ms-transition:color 1000ms ease;
+    -o-transition:color 1000ms ease;
+    transition:color 1000ms ease;
+}
