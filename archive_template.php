@@ -4,24 +4,16 @@
 require_once "settings-option-data.php";
 
 //home projects
-if (is_category('101')) {
-    echo '<div class="archive_advert">' . outputBannerPost($home_projects_dropdown_value) . '</div>';
-}
+outputBannerPost('101', $home_projects_dropdown_value);
+
 //shop projects
-if (is_category('4')) {
-    echo '<div class="archive_advert">' . outputBannerPost($shop_projects_dropdown_value) . '</div>';
-}
+outputBannerPost('4', $shop_projects_dropdown_value);
+
 //pocket hole projects
-if (is_category('89')) {
-    echo '<div class="archive_advert">' . outputBannerPost($pocket_hole_dropdown_value) . '</div>';
+outputBannerPost('89', $pocket_hole_dropdown_value);
 
-}
 //organizing
-if (is_category('15')) {
-    echo '<div class="archive_advert">' . outputBannerPost($organizing_dropdown_value) . '</div>';
+outputBannerPost('15', $organizing_dropdown_value);
 
-}
-if (is_category('100')) {
-    echo '<div class="archive_advert">' . outputBannerPost($scrap_wood_dropdown_value) . '</div>';
-
-}
+//scrap wood
+outputBannerPost('101', $scrap_wood_dropdown_value);

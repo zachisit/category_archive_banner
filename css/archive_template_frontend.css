@@ -1,0 +1,49 @@
+.archive_banner_post {
+    width:100%;
+    margin:1em 0 2em 0;
+    display:block;
+    float:left;
+    position:relative;
+}
+.archive_banner_post img {
+    width:100%;
+    height:auto;
+    margin:0;
+    padding:0;
+}
+.archive_banner_post .title_block {
+    width:100%;
+    float:left;
+    background:rgba(255,255,255,0.8);
+    padding:0.8em 0;
+    position:absolute;
+    bottom:0;
+}
+.archive_banner_post:hover .title_block {
+    background-color:#5b816d;
+    -webkit-transition:background-color 1000ms ease;
+    -moz-transition:background-color 1000ms ease;
+    -ms-transition:background-color 1000ms ease;
+    -o-transition:background-color 1000ms ease;
+    transition:background-color 1000ms ease;
+}
+.archive_banner_post .title_block h3 {
+    color:#5b816d;
+    font-size:1.8em;
+    line-height:1.4em;
+    text-align:center;
+    margin:0;
+    padding:0.3em 0;
+}
+.archive_banner_post:hover .title_block h3 {
+    color:white;
+    -webkit-transition:color 1000ms ease;
+    -moz-transition:color 1000ms ease;
+    -ms-transition:color 1000ms ease;
+    -o-transition:color 1000ms ease;
+    transition:color 1000ms ease;
+}
+/*this below is hacky, but forced due to theme's layout restrictions*/
+.listing>.column:nth-child(odd) {
+    clear:unset !important;
+}

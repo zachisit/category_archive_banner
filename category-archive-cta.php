@@ -37,165 +37,25 @@ function register_category_archive_settings() {
  * register settings view
  */
 function category_archive_settings_page() {
-    //@TODO:move all this into separate view
-    ?>
-    <div class="wrap">
-        <h1>Category Archive Page Banner Ad Settings</h1>
-        <p>Select a Post that shows on top of each category archive page. Have fun!</p>
-
-        <?php settings_errors();
-        //@TODO:build function that passes in text string number used for one, two, three; category name, general title: output this data
-        ?>
-        <form method="post" action="options.php">
-            <?php settings_fields( 'category_archive-settings-group' ); ?>
-            <?php do_settings_sections( 'category_archive-settings-group' ); ?>
-            <div id="main">
-                <div class="row">
-                    <div class="right">
-                        <h2>For The Home Section</h2>
-                        <?php
-                        $for_the_home_query_args = [
-                            'posts_per_page' => -1,
-                            'category_name' => 'projects-for-the-home',
-                            'orderby' => 'title',
-                            'order'   => 'ASC',
-                        ];
-                        $for_the_home_query = new WP_Query( $for_the_home_query_args );
-                        $for_the_home_option = get_option( 'for_the_home_location' ); ?>
-
-                        <!--<select name="<?=$for_the_home_option?>[select_field_0]">-->
-                        <select name="for_the_home_location[select_field_one_0]">
-                            <?php while ( $for_the_home_query->have_posts() ) : $for_the_home_query->the_post();
-                                $title_one = get_the_title();
-                                $postid_one = get_the_ID();
-                                ?>
-                                <option value="<?=$postid_one?>" <?php selected( $for_the_home_option['select_field_one_0'], $postid_one); ?>>
-                                    <?=$title_one?>
-                                </option>
-                            <?php endwhile; ?>
-                        </select>
-                    </div>
-                    <div class="left">
-                        <h2>Shop Projects Section</h2>
-                        <?php
-                        $shop_projects_query_args = [
-                            'posts_per_page' => -1,
-                            'category_name' => 'shop-projects',
-                            'orderby' => 'title',
-                            'order'   => 'ASC',
-                        ];
-                        $shop_projects_query = new WP_Query( $shop_projects_query_args );
-                        $shop_projects_option = get_option( 'shop_projects_location' ); ?>
-                        <select name="shop_projects_location[select_field_two_0]">
-                            <?php while ( $shop_projects_query->have_posts() ) : $shop_projects_query->the_post();
-                                $title_two = get_the_title();
-                                $postid_two = get_the_ID();
-                                ?>
-                                <option value="<?=$postid_two?>" <?php selected( $shop_projects_option['select_field_two_0'], $postid_two); ?>>
-                                    <?=$title_two?>
-                                </option>
-                            <?php endwhile; ?>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="right">
-                        <h2>Pocket Hole Projects Section</h2>
-                        <?php
-                        $pocket_hole_query_args = [
-                            'posts_per_page' => -1,
-                            'category_name' => 'shop-projects',
-                            'orderby' => 'title',
-                            'order'   => 'ASC',
-                        ];
-                        $pocket_hole_query = new WP_Query( $pocket_hole_query_args );
-                        $pocket_hole_option = get_option( 'pocket_hole_projects_location' ); ?>
-                        <select name="pocket_hole_projects_location[select_field_three_0]">
-                            <?php while ( $pocket_hole_query->have_posts() ) : $pocket_hole_query->the_post();
-                                $title_three = get_the_title();
-                                $postid_three = get_the_ID();
-                                ?>
-                                <option value="<?=$postid_three?>" <?php selected( $pocket_hole_option['select_field_three_0'], $postid_three); ?>>
-                                    <?=$title_three?>
-                                </option>
-                            <?php endwhile; ?>
-                        </select>
-                    </div>
-                    <div class="left">
-                        <h2>Organizing Section</h2>
-                        <?php
-                        $organizing_query_args = [
-                            'posts_per_page' => -1,
-                            'category_name' => 'organizing',
-                            'orderby' => 'title',
-                            'order'   => 'ASC',
-                        ];
-                        $organizing_query = new WP_Query( $organizing_query_args );
-                        $organizing_option = get_option( 'organizing_location' ); ?>
-                        <select name="organizing_location[select_field_four_0]">
-                            <?php while ( $organizing_query->have_posts() ) : $organizing_query->the_post();
-                                $title_four = get_the_title();
-                                $postid_four = get_the_ID();
-                                ?>
-                                <option value="<?=$postid_four?>" <?php selected( $organizing_option['select_field_four_0'], $postid_four); ?>>
-                                    <?=$title_four?>
-                                </option>
-                            <?php endwhile; ?>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="left">
-                        <?php /*
-                        <h2>Scrap Wood Projects Section</h2>
-                        <?php
-                        $scrap_wood_query_args = [
-                            'posts_per_page' => -1,
-                            'category_name' => 'scrap-wood-projects',
-                            'orderby' => 'title',
-                            'order'   => 'ASC',
-                        ];
-                        $scrap_wood_query = new WP_Query( $scrap_wood_query_args );
-                        $scrap_wood_option = get_option( 'scrap_wood_location' ); ?>
-                        <select name="scrap_wood_location[select_field_five_0]">
-                            <?php while ( $scrap_wood_query->have_posts() ) : $scrap_wood_query->the_post();
-                                $title_five = get_the_title();
-                                $postid_five = get_the_ID();
-                                ?>
-                                <option value="<?=$postid_five?>" <?php selected( $scrap_wood_option['select_field_five_0'], $postid_five); ?>>
-                                    <?=$title_five?>
-                                </option>
-                            <?php endwhile; ?>
-                        </select>
-                        <?php */
-                        adminCategorySelect('five', 'scrap-wood-projects', 'Scrap Wood Projects', 'scrap_wood_location') ?>
-                    </div>
-                </div>
-            </div>
-            <?php submit_button(); ?>
-        </form>
-    </div>
-<?php }
+    require_once 'views/admin_settings.php';
+}
 
 /**
  * iterate through archive loop
  */
-add_action( 'loop_start', 'wpse107113_loop_start' );
-function wpse107113_loop_start( $query ){
+function archive_loop_start( $query ){
     if( $query->is_category() && !is_front_page() ) :
-        include_once "archive_template.php";
+        require_once 'archive_template.php';
     endif;
 }
+add_action( 'loop_start', 'archive_loop_start' );
 
 /**
  * load stylesheet for frontend
  */
 function category_archive_frontend_scripts() {
     //css
-    wp_enqueue_style( 'plugin_style', plugins_url( '/archive_template_frontend.css', __FILE__ ) );
-
-    //js
-    wp_enqueue_script( 'ad_placement', plugins_url( '/insert_ad_loop.js', __FILE__ ) );
+    wp_enqueue_style( 'post_banner_post_frontend_css', plugins_url( '/css/archive_template_frontend.css', __FILE__ ), time() );
 }
 add_action( 'wp_enqueue_scripts', 'category_archive_frontend_scripts' );
 
@@ -215,6 +75,8 @@ add_action( 'admin_enqueue_scripts', 'category_archive_admin_scripts' );
  * @param $option_name
  */
 function adminCategorySelect($number, $category_slug, $category_name, $option_name_identitifier) {
+    //note: $number is just an unique ID per function ue
+
     //build our wp query
     $query_args = [
         'posts_per_page' => -1,
@@ -226,9 +88,7 @@ function adminCategorySelect($number, $category_slug, $category_name, $option_na
 
     //create unique wp variable
     $option_name = get_option( $option_name_identitifier );?>
-    <h3><?=$category_name?> Section</h3> <?php//@TODO:change back to h2 after testing
-    //@TODO:output number of articles in category
-    ?>
+    <h2><?=$category_name?> Section</h2>
     <select name="<?=$option_name_identitifier?>[select_field_<?=$number?>_0]">
         <?php while ( $wp_query->have_posts() ) : $wp_query->the_post();
             $title = get_the_title();
@@ -246,12 +106,15 @@ function adminCategorySelect($number, $category_slug, $category_name, $option_na
  * Show Banner Post
  * @param $dropdown_value
  */
-function outputBannerPost ($dropdown_value) { ?>
-    <a href="<?=get_post_permalink($dropdown_value)?>" title="Read More about - <?=get_the_title($dropdown_value)?>">
-        <?=get_the_post_thumbnail( $dropdown_value, 'medium-large' )?>
-        <div class="title_block">
-            <h3><?=get_the_title($dropdown_value)?></h3>
-        </div>
-    </a>
-    <?php
+function outputBannerPost($catID, $dropdown_value) {
+    if (is_category($catID)) { ?>
+        <div class="archive_banner_post">
+        <a href="<?=get_post_permalink($dropdown_value)?>" title="Read More about - <?=get_the_title($dropdown_value)?>">
+            <?=get_the_post_thumbnail( $dropdown_value, 'medium-large' )?>
+            <div class="title_block">
+                <h3><?=get_the_title($dropdown_value)?></h3>
+            </div>
+        </a>
+    </div>
+    <?php }
 }
