@@ -63,7 +63,7 @@ add_action( 'wp_enqueue_scripts', 'category_archive_frontend_scripts' );
  * load stylesheet for backend
  */
 function category_archive_admin_scripts() {
-    wp_enqueue_style( 'backend_plugin_style', plugins_url( '/backend_style.css', __FILE__ ) );
+    wp_enqueue_style( 'post_banner_post_backend_css', plugins_url( '/css/backend_style.css', __FILE__ ), time() );
 }
 add_action( 'admin_enqueue_scripts', 'category_archive_admin_scripts' );
 
