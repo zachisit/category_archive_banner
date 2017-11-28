@@ -146,6 +146,7 @@ function category_archive_settings_page() {
                 </div>
                 <div class="row">
                     <div class="left">
+                        <?php /*
                         <h2>Scrap Wood Projects Section</h2>
                         <?php
                         $scrap_wood_query_args = [
@@ -166,7 +167,8 @@ function category_archive_settings_page() {
                                 </option>
                             <?php endwhile; ?>
                         </select>
-                        <?php //adminCategorySelect('five', 'scrap-wood-projects', 'Scrap Wood Projects', 'scrap_wood_location') ?>
+                        <?php */
+                        adminCategorySelect('five', 'scrap-wood-projects', 'Scrap Wood Projects', 'scrap_wood_location') ?>
                     </div>
                 </div>
             </div>
@@ -212,7 +214,8 @@ add_action( 'admin_enqueue_scripts', 'category_archive_admin_scripts' );
  * @param $category_name
  * @param $option_name
  */
-function adminCategorySelect($number, $category_slug, $category_name, $option_name) {
+function adminCategorySelect($number, $category_slug, $category_name, $option_name_identitifier) {
+    //build our wp query
     $query_args = [
         'posts_per_page' => -1,
         'category_name' => $category_slug,
@@ -220,14 +223,18 @@ function adminCategorySelect($number, $category_slug, $category_name, $option_na
         'order'   => 'ASC',
     ];
     $wp_query = new WP_Query( $query_args );
-    $option_name = get_option( $option_name ); ?>
-    <h3><?=$category_name?> Section</h3> <?php//@TODO:change back to h2 after testing ?>
-    <select name="<?=$option_name?>[select_field_'<?=$number?>.'_0]">
+
+    //create unique wp variable
+    $option_name = get_option( $option_name_identitifier );?>
+    <h3><?=$category_name?> Section</h3> <?php//@TODO:change back to h2 after testing
+    //@TODO:output number of articles in category
+    ?>
+    <select name="<?=$option_name_identitifier?>[select_field_<?=$number?>_0]">
         <?php while ( $wp_query->have_posts() ) : $wp_query->the_post();
             $title = get_the_title();
             $postid = get_the_ID();
             ?>
-            <option value="<?=$postid?>" <?php selected( $option_name['select_field_'. $number .'_0'], $postid); ?>>
+            <option value="<?=$postid?>" <?php selected( $option_name['select_field_'.$number.'_0'], $postid); ?>>
                 <?=$title?>
             </option>
         <?php endwhile; ?>
